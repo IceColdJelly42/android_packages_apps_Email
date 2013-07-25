@@ -739,8 +739,9 @@ public class NotificationController {
         final int flags = account.mFlags;
         final String ringtoneUri = account.mRingtoneUri;
         final boolean vibrate = (flags & Account.FLAGS_VIBRATE) != 0;
+        final boolean led = (flags & Account.FLAGS_NOTIFY_USE_LED) != 0;
 
-        int defaults = Notification.DEFAULT_LIGHTS;
+        int defaults = led ? Notification.DEFAULT_LIGHTS : 0;
         if (vibrate) {
             defaults |= Notification.DEFAULT_VIBRATE;
         }
